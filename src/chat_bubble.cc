@@ -13,21 +13,44 @@ ChatBubble::ChatBubble(QWidget *parent) {
 }
 
 ChatBubble::ChatBubble(const QString &text, QWidget *parent)
+<<<<<<< HEAD
     : QLabel(text, parent),
       backgroundcolor_(Qt::green),
       fontcolor_(Qt::black) {
   setVisible(true);
+=======
+    : QLabel(parent),
+      kText_(text),
+      backgroundcolor_(Qt::green),
+      fontcolor_(Qt::black) {
+}
+
+ChatBubble::~ChatBubble() {
+}
+
+void ChatBubble::Init(Qt::Alignment align) {
+  setText(kText_);
+>>>>>>> 67f5ced3a360bed95b14dbba26aa8bed2ed8eec5
   setMargin(10);
-  setAlignment(Qt::AlignCenter);
   setWordWrap(true);
   setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
   setStyleSheet(QString("color: %1").arg(fontcolor_.name()));
   
   adjustSize();
-}
+<<<<<<< HEAD
+=======
 
-ChatBubble::~ChatBubble() {
+  qDebug() << pos();
 
+  QPropertyAnimation *anim = new QPropertyAnimation(this);
+  anim->setTargetObject(this);
+  anim->setPropertyName("size");
+  anim->setStartValue(QSize(0, 0));
+  anim->setEndValue(size());
+  anim->setDuration(1500);
+  anim->setEasingCurve(QEasingCurve::OutElastic);
+  anim->start();
+>>>>>>> 67f5ced3a360bed95b14dbba26aa8bed2ed8eec5
 }
 
 void ChatBubble::set_backgroundcolor(const QColor &color) {
@@ -44,7 +67,7 @@ void ChatBubble::paintEvent(QPaintEvent *event) {
 
   painter.setBrush(backgroundcolor_);
   painter.setPen(backgroundcolor_);
-  painter.drawRoundedRect(rect(), 4, 4);
+  painter.drawRoundedRect(rect(), 8, 8);
 
   QLabel::paintEvent(event);
 }
