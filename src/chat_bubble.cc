@@ -10,13 +10,17 @@
 
 ChatBubble::ChatBubble(const QString &text, QWidget *parent)
     : QLabel(parent),
+      kText_(text),
       backgroundcolor_(Qt::green),
       fontcolor_(Qt::black) {
-  // All this stuff should not be in here :(
-  setVisible(true);
-  setText(text);
+}
+
+ChatBubble::~ChatBubble() {
+}
+
+void ChatBubble::Init(Qt::Alignment align) {
+  setText(kText_);
   setMargin(10);
-  setAlignment(Qt::AlignCenter);
   setWordWrap(true);
   setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
   setStyleSheet(QString("color: %1").arg(fontcolor_.name()));
@@ -24,22 +28,15 @@ ChatBubble::ChatBubble(const QString &text, QWidget *parent)
   adjustSize();
 
   qDebug() << pos();
-  
+
   QPropertyAnimation *anim = new QPropertyAnimation(this);
   anim->setTargetObject(this);
-  // anim->setPropertyName("size");
-  // anim->setStartValue(QSize(0, 0));
-  // anim->setEndValue(size()); // 结束大小
-  anim->setPropertyName("geometry");
-  anim->setStartValue(QRect(0 + width() / 2, 0, 0, 0));
-  anim->setEndValue(QRect(x() + width() / 2, y() + height() / 2, width(), height())); // 结束大小
-  anim->setDuration(1500); // 持续时间为200毫秒
-  anim->setEasingCurve(QEasingCurve::OutElastic); // 缓动曲线
+  anim->setPropertyName("size");
+  anim->setStartValue(QSize(0, 0));
+  anim->setEndValue(size());
+  anim->setDuration(1500);
+  anim->setEasingCurve(QEasingCurve::OutElastic);
   anim->start();
-}
-
-ChatBubble::~ChatBubble() {
-
 }
 
 void ChatBubble::set_backgroundcolor(const QColor &color) {
@@ -56,7 +53,7 @@ void ChatBubble::paintEvent(QPaintEvent *event) {
 
   painter.setBrush(backgroundcolor_);
   painter.setPen(backgroundcolor_);
-  painter.drawRoundedRect(rect(), 4, 4);
+  painter.drawRoundedRect(rect(), 8, 8);
 
   QLabel::paintEvent(event);
 }
