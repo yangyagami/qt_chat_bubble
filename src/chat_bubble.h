@@ -12,7 +12,7 @@ class ChatBubble : public QLabel {
   explicit ChatBubble(const QString &text, QWidget *parent = nullptr);
   virtual ~ChatBubble();
 
-  void Init(Qt::Alignment align);
+  void Init();
 
   void set_backgroundcolor(const QColor &color);
   void set_fontcolor(const QColor &color);

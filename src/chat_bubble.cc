@@ -7,6 +7,7 @@
 #include <QPainter>
 #include <QSizePolicy>
 #include <QPropertyAnimation>
+#include <QDebug>
 
 ChatBubble::ChatBubble(const QString &text, QWidget *parent)
     : QLabel(parent),
@@ -18,7 +19,7 @@ ChatBubble::ChatBubble(const QString &text, QWidget *parent)
 ChatBubble::~ChatBubble() {
 }
 
-void ChatBubble::Init(Qt::Alignment align) {
+void ChatBubble::Init() {
   setText(kText_);
   setMargin(10);
   setWordWrap(true);
