@@ -10,7 +10,9 @@ qt_standard_project_setup()
 
 qt_add_executable(test
     src/chat_bubble.cc
+    src/chat_item.cc
     test/main.cc
+    test/mainwindow.cc
 )
 
 target_link_libraries(test PRIVATE Qt6::Core Qt6::Gui Qt6::Widgets)

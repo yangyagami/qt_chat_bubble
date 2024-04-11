@@ -9,6 +9,7 @@
 class ChatBubble : public QLabel {
   Q_OBJECT
  public:
+  explicit ChatBubble(QWidget *parent = nullptr);
   explicit ChatBubble(const QString &text, QWidget *parent = nullptr);
   virtual ~ChatBubble();
 
@@ -19,7 +20,6 @@ class ChatBubble : public QLabel {
  protected:
   virtual void paintEvent(QPaintEvent *event) override;
  private:
-  const QString kText_;
   QColor backgroundcolor_;
   QColor fontcolor_;
 };
