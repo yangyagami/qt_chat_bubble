@@ -9,7 +9,6 @@ find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets)
 qt_standard_project_setup()
 
 qt_add_executable(test
-    src/chat_bubble.cc
     src/chat_item.cc
     test/main.cc
     test/mainwindow.cc
