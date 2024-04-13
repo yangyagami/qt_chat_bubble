@@ -12,6 +12,11 @@ MainWindow::MainWindow(QWidget *parent)
       ui_(new Ui::MainWindow) {
   ui_->setupUi(this);
 
+  ui_->talk_area->setStyleSheet(
+      "QListWidget::item:hover { background-color: transparent; }"
+      "QListWidget::item:selected { background-color: transparent; }"
+  );
+
   connect(ui_->send_button, &QPushButton::clicked, this, [=](){
     ChatItem *send_chat_item = new ChatItem(ui_->textEdit->toPlainText(), this);
     send_chat_item->set_bubble_background_color(Qt::blue);
